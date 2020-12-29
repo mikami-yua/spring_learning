@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ch01-hello-spring/ch01-hello-spring.iml" filepath="$PROJECT_DIR$/ch01-hello-spring/ch01-hello-spring.iml" />
       <module fileurl="file://$PROJECT_DIR$/ch02-di-xml/ch02-di-xml.iml" filepath="$PROJECT_DIR$/ch02-di-xml/ch02-di-xml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ch03-ioc-homework/ch03-ioc-homework.iml" filepath="$PROJECT_DIR$/ch03-ioc-homework/ch03-ioc-homework.iml" />
     </modules>
   </component>
 </project>

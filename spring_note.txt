@@ -29,6 +29,15 @@ spring第一个核心功能 ioc：Inversion of Contorl 控制反转，是一个理论
 	作用：
 		减少对代码的改动也能实现不同的功能。实现解耦合
 
+    适合使用spring的对象：
+        dao类，service类，controller类，工具类
+        spring中的对象默认是单例的，在容器中叫这个名的对象只有一个
+    不适合在spring中的对象：
+        实体类：实体类的数据来自数据库
+        servlet，监听器，过滤器（由tomcat创建）
+    如何把对象放到容器中：
+        使用xml文件：使用《bean》
+        使用注解
 
 java中创建对象的方式：
 	1.构造方法 new
@@ -51,6 +60,34 @@ ioc的技术实现
 	DI 依赖注入
 		只需要在程序中提供要使用的对象名称，对象如何创建赋值查找都由容器实现（容器里有个工程师）
 	spring使用di实现了ioc功能，spring底层创建对象使用的是反射
+
+	ioc：控制反转
+	    是一种思想，指导开发者在容器中，在代码之外，给属性赋值，管理依赖
+
+	spring使用DI技术，底层使用反射机制
+
+	Di给属性赋值
+	    set注入：使用set方法
+	        1.简单类型的set注入
+	             <property name="属性名" value="属性值" />
+	        2.引用类型的set注入
+	            <property name="属性名" ref="bean的id（对象名称）" />
+	    构造注入:使用有参数的构造方法
+	        使用<constructor-arg>标签
+	            1.使用name属性：形参名
+	            2.使用index属性：形参的位置
+
+使用spring的步骤：
+    1.加入依赖
+        <dependency>
+              <groupId>org.springframework</groupId>
+              <artifactId>spring-context</artifactId>
+              <version>5.2.5.RELEASE</version>
+        </dependency>
+    2.创建类
+    3.创建spring的配置文件，使用bean声明对象
+    4.使用对象，使用applicationContext接口和它的实现类：ClassPathXmlApplicationContext的getBean（）得到对象
+
 
 对象的赋值
     1.基于xml的DI

@@ -19,14 +19,24 @@
           即使是int也需要在value处加引号。这个规则是xml文件的规则
 
           类中一定要有set方法，根别的无关，有set就能用
+
+
+        2.引用类型的set注入：spring调用set方法
+             <bean id="myStudent" class="org.example.ba02.Student">
+                <property name="属性名" ref="bean的id（对象名称）" />
+            </bean>
+
     -->
-    <bean id="myStudent" class="org.example.ba01.Student">
+    <bean id="myStudent" class="org.example.ba02.Student">
         <property name="name" value="李四" />
-        <property name="age" value="20" />
-        <property name="email" value="lisi@gamil.com" />
+        <property name="age" value="28" />
+        <!--引用类型的赋值-->
+        <property name="school" ref="mySchool" /><!--此处调用setSchool 传入myschool-->
     </bean>
 
-    <bean id="mydate" class="java.util.Date">
-        <property name="time" value="1111111111" />
+    <!--声明school对象-->
+    <bean id="mySchool" class="org.example.ba02.School">
+        <property name="name" value="北京大学" />
+        <property name="address" value="北京海淀区" />
     </bean>
 </beans>

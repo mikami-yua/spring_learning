@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--用哪个对象就声明哪个对象-->
+    <bean id="mysqlDao" class="org.example.dao.impl.UserDaoImpl" />
+    <bean id="oracleDao" class="org.example.dao.impl.OracleDaoImpl" />
+
+    <bean id="userService" class="org.example.service.impl.UserServiceImpl">
+        <!--set注入-->
+        <property name="dao" ref="mysqlDao" />
+    </bean>
+    <bean id="userService2" class="org.example.service.impl.UserServiceImpl">
+        <!--set注入-->
+        <property name="dao" ref="oracleDao" />
+    </bean>
+</beans>

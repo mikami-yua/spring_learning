@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--声明Student对象
+    注入就是赋值的意思
+    简单类型：spring规定java基本数据类型和字符串都是简单数据类型
+    DI:给属性赋值
+        1.set注入：spring调用set方法
+            1）.简单类型的set注入
+                   <bean id="myStudent" class="org.example.ba01.Student">
+                      <property name="属性名" value="属性值" />
+                  </bean>
+                  一个property只能给一个属性赋值
+
+                spring只是执行了set方法，方法体里是否赋值是由开发者决定的
+                有setEmail（）方法，虽然没有属性，只要有set方法就执行，只看set方法。不看属性
+
+                即使是int也需要在value处加引号。这个规则是xml文件的规则
+
+                类中一定要有set方法，根别的无关，有set就能用
+
+
+            2.）引用类型的set注入：spring调用set方法
+                   <bean id="myStudent" class="org.example.ba02.Student">
+                      <property name="属性名" ref="bean的id（对象名称）" />
+                  </bean>
+
+        2.构造注入：spring调用有参数构造，在创建对象的同时，给属性赋值
+            使用<constructor-arg>标签
+                <constructor-arg>：一个标签表示构造方法的一个参数
+                标签属性：
+                    name：表示构造方法的形参名
+                    index：表示构造方法的参数的位置（从左向右  0，1，2，。。。。。。）
+                    value：构成方法的参数类型是简单类型使用value
+                    ref：构成方法的参数类型是引用类型使用ref
+    -->
+    <!--使用name属性实现构造注入-->
+    <bean id="myStudent" class="org.example.ba03.Student">
+        <constructor-arg name="name" value="zhangsan" />
+        <constructor-arg name="age" value="23" />
+        <constructor-arg name="school" ref="mySchool" />
+    </bean>
+
+    <!--使用index属性-->
+    <bean id="myStudent2" class="org.example.ba03.Student">
+        <constructor-arg index="0" value="wangwu" />
+        <constructor-arg index="1" value="18" />
+        <constructor-arg index="2" ref="mySchool" />
+    </bean>
+
+    <!--省略index属性-->
+    <bean id="myStudent3" class="org.example.ba03.Student">
+        <constructor-arg value="wangwu" />
+        <constructor-arg value="18" />
+        <constructor-arg ref="mySchool" />
+    </bean>
+
+    <!--声明school对象-->
+    <bean id="mySchool" class="org.example.ba03.School">
+        <property name="name" value="北京大学" />
+        <property name="address" value="北京海淀区" />
+    </bean>
+
+    <!--构造File，使用构造注入-->
+    <bean id="myfile" class="java.io.File">
+        <constructor-arg name="parent" value="E:\javaee\project\proxy-project" />
+        <constructor-arg name="child" value="note.txt" />
+    </bean>
+</beans>

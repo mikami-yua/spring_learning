@@ -1,9 +1,12 @@
-package org.example.ba01;
+package org.example.ba02;
 
 public class Student {
 
     private String name;
     private int age;
+
+    //声明一个引用类型
+    private School school;
 
     public void setName(String name) {
         this.name = name;
@@ -13,8 +16,9 @@ public class Student {
         this.age = age;
     }
 
-    public void setEmail(String email){
-        System.out.println("email:"+email);
+    public void setSchool(School school) {
+        System.out.println("school==="+school);
+        this.school = school;
     }
 
     @Override
@@ -22,6 +26,7 @@ public class Student {
         return "Student{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
+                ", school=" + school +
                 '}';
     }
 }
