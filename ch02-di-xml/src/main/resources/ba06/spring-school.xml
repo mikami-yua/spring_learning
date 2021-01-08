@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <!--声明school对象-->
+    <bean id="mySchool" class="org.example.ba06.School"><!--id需要和类的属性名相同-->
+        <property name="name" value="大连大学" />
+        <property name="address" value="北京海淀区" />
+    </bean>
+</beans>

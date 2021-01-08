@@ -93,3 +93,30 @@ ioc的技术实现
     1.基于xml的DI
 
     2.基于注解的DI【重要】
+        @override就是一个注解
+
+ 多个配置文件
+    1.每个文件都小，打开很块
+    2.避免多人竞争带来的冲突
+        一个模块一个配置文件
+    分配方式：
+        1.按业务功能
+        2.按类的功能（数据库功能，事物相关，service相关）
+
+基于注解的DI【重要】
+    通过注解完成java对象的创建和属性赋值
+
+    使用步骤：
+        1.加入maven的依赖 spring-context，在加入spring-context的同时，间接加入spring-aop的依赖。
+            使用注解必须使用spring-aop依赖
+        2.在类中加入spring注解
+        3.在spring的配置文件中，加入一个组件扫描器的标签，说明注解在项目中的位置
+
+    需要学校的注解：
+        1.@Component
+        2.@Respotory
+        3.@Service
+        4.@Controller
+        5.@Value
+        6.@Autowired
+        7.@Resource

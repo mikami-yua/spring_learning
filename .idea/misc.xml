@@ -6,6 +6,7 @@
         <option value="$PROJECT_DIR$/ch01-hello-spring/pom.xml" />
         <option value="$PROJECT_DIR$/ch02-di-xml/pom.xml" />
         <option value="$PROJECT_DIR$/ch03-ioc-homework/pom.xml" />
+        <option value="$PROJECT_DIR$/ch04-di-annot/pom.xml" />
       </list>
     </option>
   </component>

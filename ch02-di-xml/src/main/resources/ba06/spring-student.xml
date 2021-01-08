@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    student模块的所有bean声明
+    -->
+
+    <!--byType-->
+    <bean id="myStudent" class="org.example.ba06.Student" autowire="byType">
+        <property name="name" value="李四" />
+        <property name="age" value="30" />
+        <!--引用类型的赋值-->
+    </bean>
+
+</beans>
