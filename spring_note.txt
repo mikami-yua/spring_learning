@@ -112,11 +112,46 @@ ioc的技术实现
         2.在类中加入spring注解
         3.在spring的配置文件中，加入一个组件扫描器的标签，说明注解在项目中的位置
 
-    需要学校的注解：
+    自动注入：
+        由spring根据某些规则，给引用类型赋值
+        常用byName和byType方式
+            byName：按名称注入
+                java类中引用类型的属性名和spring容器中bean的id一样，数据类型一样，这样的bean赋值给引用类型
+            byType：
+                java类中引用类型的数据类型和spring容器中bean的class是同源关系的，这样的bean能赋值给引用类型
+
+    需要学习的注解：
         1.@Component
+            用于创建对象（普通对象）
         2.@Respotory
+            创建dao对象（访问数据库）
         3.@Service
+            创建service对象（处理业务逻辑）有事物功能
         4.@Controller
+            创建控制器对象的，接收请求，显示处理结果
         5.@Value
+            简单类型的赋值
         6.@Autowired
+            spring中引用类型的赋值（byName和byTyep，默认使用byType）
         7.@Resource
+            jdk中引用类型的赋值（默认使用byName）
+
+        注解的使用步骤：
+            1.加入依赖：
+                spring-context 间接加入 spring-aop
+            2.在类中加入注解
+            3.在spring的配置文件中，加入组件扫描器的标签，<context:component-scan base-package="org.example.ba07" />
+
+ioc可以实现解耦合
+    ioc实现业务对象之间的解耦合：service和dao对象之间的解耦合
+
+
+
+aop------面向切面变成
+
+    动态代理：能创建对象，原有代码不改动的情况下可以实现功能的增加和功能的增强
+        两种实现方式：
+            jdk动态代理：要求目标类必须有接口
+                使用Proxy Method InnovationHandler三个类实现动态代理
+            CGLIB动态代理：不许需要有接口（使用继承的方式）
+                对类的要求低，只要能继承就行

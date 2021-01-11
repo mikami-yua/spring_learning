@@ -16,5 +16,14 @@
             spring会扫描和遍历base-package指定的包，把包中和子包中的所有类，找到类中的注解，按照注解的功能创建对象或者给属性赋值。
 
     -->
-    <context:component-scan base-package="org.example.ba07" />
+    <context:component-scan base-package="org.example.ba01" />
+    <!--指定多个包的三种方式-->
+    <!--方式1:使用多次组件扫描器指定不同的包-->
+    <context:component-scan base-package="org.example.ba01" />
+    <context:component-scan base-package="org.example.ba02" />
+    <!--方式2：使用；或者,分割多个包-->
+    <context:component-scan base-package="org.example.ba01;org.example.ba02" />
+    <!--方式3：指定父包-->
+    <context:component-scan base-package="org.example" />
+
 </beans>
