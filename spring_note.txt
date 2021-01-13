@@ -147,11 +147,83 @@ ioc可以实现解耦合
 
 
 
-aop------面向切面变成
+aop------面向切面编程
 
-    动态代理：能创建对象，原有代码不改动的情况下可以实现功能的增加和功能的增强
+    动态代理：能创建对象，原有代码不改动的情况下可以实现功能的增加和功能的增强，减少重复代码，专注业务逻辑
         两种实现方式：
             jdk动态代理：要求目标类必须有接口
                 使用Proxy Method InnovationHandler三个类实现动态代理
             CGLIB动态代理：不许需要有接口（使用继承的方式）
-                对类的要求低，只要能继承就行
+                对类的要求低，只要能继承就行，子类就是代理对象
+
+    动态代理规范化：aop，aop的底层就是动态代理，设计aop是为了规范化
+
+    aop面向切面编程，基于动态代理，可以使用jdk和cglib两种方式。
+        Aspect：切面，给目标类增加的功能就是切面（例子中的日志，提交等）
+            切面的特点：一般都是非业务方法，可以独立使用
+        Orient：面向
+        Programing：编程
+
+        理解：
+            oop：面向对象编程。程序设计时，把功能分程不同的对象实现。程序由不同的类组成，基于对象构建对象
+            aop：分析找出切面，考虑切面在什么地方执行
+                1、分析项目功能时找出切面（最难）
+                2、合理安排切面执行的时间（目标方法前还是目标方法后）
+                3、合理安排切面执行的位置，在哪个类，哪个方法增加功能
+
+        术语：
+            Aspect：切面，表示增强功能，就是一堆代码完成某个功能，一般是非业务功能。
+                常见的切面的功能：日志，事务，统计信息，参数检查，权限验证
+            JoinPoint：连接点（业务方法），连接业务方法和切面的位置。就是某个类中的业务方法（例子中的dosome方法）
+            PiontCut：切入点，多个连接点方法的集合。多个方法（这些方法都要加入切面）
+            目标对象：给哪个类增加功能，这个类就是目标对象
+            Advice：通知，表示切面的功能执行的时间（目标方法之前还是之后）
+
+        一个切面有三个关键要素：
+            1.切面的功能代码：切面干什么
+            2.切面的执行位置：PointCut表示
+            3.切面的执行时间：Advice表示
+
+    aop的实现：
+        aop是个规范，是对动态代理的规范化
+        aop的技术实现框架：
+            1、spring内部实现了aop的规范
+                spring在事务处理使用aop
+                项目开发中很少使用spring的实现，因为spring笨重
+            2、aspectJ：开源的专门做aop的框架。spring框架中集成了aspectJ框架
+                aspectJ实现aop的两种方式：
+                    1、使用xml配置文件：配置全局事务
+                    2、使用注解【项目中一般都使用注解】
+                        5个注解
+
+    aspectJ框架的使用：
+        1、切面的执行时间，这个执行时间在规范中叫做advice（通知、增强）
+            在aspectJ框架中使用注解表示（也可以使用xml文件中的标签）
+                @Before
+                @AfterReturning
+                @Around
+                @AfterThrowing
+                @After
+        2、执行的位置，使用切入点表达式
+            execution(modifiers-pattern? ret-type-pattern
+                     declaring-type-pattern?name-pattern(param-pattern)
+                     throws-pattern?)
+
+            modifiers-pattern:访问权限（public privacy）
+            ret-type-pattern：返回值类型【必须】
+            declaring-type-pattern：包名类名
+            name-pattern(param-pattern)：方法名（参数类型和参数个数）【必须】
+            throws-pattern：抛出异常类型
+            ？：可选部分
+
+            *：任意个字符
+            ..:在方法参数中，表示任意个参数。用在包名后，表示当前包及其子包路径
+            +：用在类名后，表示当前类及其子类。用在接口后，表示当前接口及其实现类
+
+                ps：execution（public * *(..)）//只要方法是用public修饰的，不管方法名，返回值，方法参数。都可以加入切面功能
+                    execution（* set*（..））//任何一个以set开始的方法都可以加入切面功能
+                    execution（* com.xyz.service.*.*(..)）
+                    //com.xyz.service.*这个包中的所有类   类.表示这个类中的方法
+                    //表示这个包中的任意类，任意类中的任意方法，方法参数是任意的
+                    execution（* com.xyz.service..*.*(..)）//com.xyz.service包和子包中所有类的所有方法
+                    execution(* *..service.*.*(..))//在service包上级可以有多级包
