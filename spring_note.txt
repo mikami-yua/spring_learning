@@ -202,8 +202,11 @@ aop------面向切面编程
                 @Before
                 @AfterReturning
                 @Around
-                @AfterThrowing
-                @After
+                @AfterThrowing（很少用）
+                @After（很少用）
+                @PointCut
+                    管理切入点的，在项目中多个切入点是想用的可以复用，使用这个
+                    在自定义方法上面使用，自定义方法名可以代替原切入点表达式
         2、执行的位置，使用切入点表达式
             execution(modifiers-pattern? ret-type-pattern
                      declaring-type-pattern?name-pattern(param-pattern)
