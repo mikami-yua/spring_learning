@@ -10,6 +10,8 @@
     <file url="file://$PROJECT_DIR$/ch04-di-annot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ch04-di-annot/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ch06-aop-aspactj/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ch06-aop-aspactj/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ch07-spring-mybatis/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring_note.txt" charset="GBK" />
   </component>
 </project>

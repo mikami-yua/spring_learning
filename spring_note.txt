@@ -230,3 +230,33 @@ aop------面向切面编程
                     //表示这个包中的任意类，任意类中的任意方法，方法参数是任意的
                     execution（* com.xyz.service..*.*(..)）//com.xyz.service包和子包中所有类的所有方法
                     execution(* *..service.*.*(..))//在service包上级可以有多级包
+
+====================================================================================================================
+第四章 mybatis+spring  使用ioc技术
+
+ioc可以整合mybatis和spring
+    ioc可以创建对接，把mybatis中的对象交给spring统一创建，开发者从spring中获取对象
+    开发人员不需要同时面对两个框架
+
+mybatis的使用
+    1.定义dao接口 StudentDao
+    2.定义mapper文件 StudentDao.xml
+    3.定义mybatis的主配置文件 mybatis.xml
+    4.创建dao代理对象 dao=SqlSession.getMapper(StudentDao.class)
+
+使用dao对象需要使用getMapper方法
+    需要获取SqlSession对象，使用SqlSessionFactory的openSession（）方法
+    创建SqlSessionFactory对象。通过读取mybatis的主配置文件能创建SqlSessionFactory对象
+        主配置文件：
+            1.数据库的信息
+            2.mapper文件位置
+
+会使用一个独立的连接池类替换mybatis默认自带的，把连接池类也交给spring创建
+
+需要spring创建以下对象：
+    1.独立的连接池类对象，使用阿里的druid连接池
+    2.SqlSessionFactory对象
+    3.创建出dao对象（最终目的）
+
+需要学习上面三个对象的创建语法，使用xml的bean标签。
+p71
