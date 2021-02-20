@@ -12,7 +12,7 @@ spring mybatis集成
 5.创建mybatis的主配置文件
 6.创建service接口的实现类，属性是dao
 7.创建spring配置文件：声明mybatis的对象交给spring创建
-    1）数据源
+    1）数据源 DataSource
     2）sqlsessionfactory
     3）dao对象
     4）声明自定义service

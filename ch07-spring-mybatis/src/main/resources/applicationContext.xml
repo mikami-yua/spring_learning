@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <!--声明数据源dataSource,作用是连接数据库的（不使用mybatis的定义数据库连接的方法了）-->
+    <bean id="myDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close" >
+        <!--set注入 给DruidDataSource提供数据库连接信息-->
+        <property name="url" value="jdbc:mysql://localhost:3306/springdb"/><!--对应setURL-->
+        <property name="username" value="root"/>
+        <property name="password" value="333" />
+        <property name="maxActive" value="20" />
+
+    </bean>
+
+    <!--声明mybatis中sqlsessionfactory类，这个类的内部创建sqlsessionfactory-->
+    <bean id="sqlSessionfactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--set注入，把数据库连接池交付给dataSource属性，这样就知道数据库是谁了-->
+        <property name="dataSource" ref="myDataSource"/>
+        <!--mybatis主配置文件的位置  configLocation属性是resource类型的，读取配置文件，赋值使用value，使用classpath指定文件的位置-->
+        <property name="configLocation" value="classpath:mybatis.xml" />
+    </bean>
+</beans>
