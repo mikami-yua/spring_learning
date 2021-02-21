@@ -200,10 +200,15 @@ aop------面向切面编程
         1、切面的执行时间，这个执行时间在规范中叫做advice（通知、增强）
             在aspectJ框架中使用注解表示（也可以使用xml文件中的标签）
                 @Before
+                    前置通知，在目标方法之前执行切切面功能
                 @AfterReturning
+                    后置通知，在目标方法之后执行，可以获取目标方法的返回值
                 @Around
+                    环绕通知，在目标方法的前和后都能增强功能，还能控制目标方法的访问，修改返回值
                 @AfterThrowing（很少用）
+                    异常通知，在目标方法抛出异常后执行的通知
                 @After（很少用）
+                    最终通知，总是会被执行的代码
                 @PointCut
                     管理切入点的，在项目中多个切入点是想用的可以复用，使用这个
                     在自定义方法上面使用，自定义方法名可以代替原切入点表达式
@@ -231,8 +236,17 @@ aop------面向切面编程
                     execution（* com.xyz.service..*.*(..)）//com.xyz.service包和子包中所有类的所有方法
                     execution(* *..service.*.*(..))//在service包上级可以有多级包
 
+        3.代理的使用方式：
+            1.目标类有接口：框架使用jdk动态代理
+            2.目标类没有接口：框架使用cglib动态代理
+            3.有接口也可以强制使用cglib动态代理
 ====================================================================================================================
-第四章 mybatis+spring  使用ioc技术
+第四章 mybatis+spring  使用ioc技术，把mybatis框架中使用的对象统一交给spring创建和管理。
+
+交给spring的mybatis对象：
+    1.数据源DataSource,使用Druid连接池
+    2.sqlsessionfactory，使用sqlsessionfactoryBean对象在内部创建的sqlsessionfactory
+    3.dao对象，使用mapperScannerConfiger，在这个类的内部嗲用getMapper，创建dao对象
 
 ioc可以整合mybatis和spring
     ioc可以创建对接，把mybatis中的对象交给spring统一创建，开发者从spring中获取对象
@@ -259,4 +273,39 @@ mybatis的使用
     3.创建出dao对象（最终目的）
 
 需要学习上面三个对象的创建语法，使用xml的bean标签。
-p75
+在ch07的applicationContext中有详细配置内容
+
+=====================================================================================================
+第五章:spring是如何控制事务的
+
+什么是事务
+    事务：mysql时提出事务，事务是指一组sql语句的集合，这个集合中有多条sql。希望这些sql都能成功，或者都失败。
+            这些sql语句作为整体执行。
+
+什么时候想到使用事务
+    当操作涉及到多个表，或者是多个sql的insert，update，delete。需要保证这些语句都是成功才能完成我的功能，或者都失败
+        保证操作是符号要求的
+
+    在java代码中写程序控制事务，事务应该放在哪里？
+        dao代表sql语句。servcie是业务方法。
+        事务是放在service类的业务方法上，业务方法会调用多个dao方法，执行多个sql语句
+
+通常使用jdbc访问数据库，还是mybatis凡是数据库怎么处理事务
+    jdbc访问数据库，处理事务：
+        connection conn；conn.commit();comm.rollback();
+
+    mybatis:
+       SqlSession.commit();  SqlSession.rollback();
+
+‘通常使用jdbc访问数据库，还是mybatis凡是数据库怎么处理事务’处理事务的方式有什么不足
+    1.不同的数据库访问技术，处理事务的对象方法不同。需要了解不同数据库访问技术的原理
+    2.掌握多种数据库中事务的处理逻辑，什么时候提交，什么时候回滚
+    3.处理事务的多种方法
+    4.一个开发人员的压力过大，要求高
+
+    总结：机制过多，技术太多
+
+怎么解决不足
+    
+
+处理事务需要怎么做，做什么
