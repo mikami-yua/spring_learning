@@ -1,0 +1,24 @@
+ch08 事务的环境项目
+
+步骤
+1.新建maven项目
+2.加入依赖（准备pom文件）
+    spring依赖
+    mybatis依赖
+    mysql驱动
+    spring的事务依赖
+    mybatis和spring集成的依赖：mybatis官方提供的，用于在spring项目中创建mybatis的sqlsessionfactory，dao对象的
+3.创建实体类
+    sale，goods
+4.创建dao接口和mapper文件
+    saledao，goodsdao
+    saledao.xml,goodsdao.xml
+
+5.创建mybatis的主配置文件
+6.创建service接口的实现类，属性是saledao goodsdao
+7.创建spring配置文件：声明mybatis的对象交给spring创建
+    1）数据源 DataSource
+    2）sqlsessionfactory
+    3）dao对象
+    4）声明自定义service
+8.创建测试类，获取service对象，通过service调用dao数据库的访问

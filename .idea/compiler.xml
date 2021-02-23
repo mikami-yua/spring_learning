@@ -7,10 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ch01-hello-spring" />
-        <module name="ch06-aop-aspactj" />
+        <module name="ch08-spring-trans" />
         <module name="ch07-spring-mybatis" />
-        <module name="ch02-di-xml" />
         <module name="ch03-ioc-homework" />
+        <module name="ch02-di-xml" />
+        <module name="ch06-aop-aspactj" />
         <module name="ch04-di-anno" />
       </profile>
     </annotationProcessing>
@@ -21,6 +22,7 @@
       <module name="ch04-di-anno" target="1.8" />
       <module name="ch06-aop-aspactj" target="1.8" />
       <module name="ch07-spring-mybatis" target="1.8" />
+      <module name="ch08-spring-trans" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
