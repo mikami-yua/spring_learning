@@ -1,0 +1,11 @@
+ch11
+在web项目种使用spring，完成学生注册的功能
+
+实现步骤：
+1.创建maven，web项目
+2.加入依赖（copy 07的依赖）
+    添加jsp servlet的依赖
+3.拷贝07种的代码和配置文件
+4.写新功能jsp，发起请求 id name email age
+5.创建servlet，接收请求参数，调用service，调用dao完成注册
+6.创建一个jsp作为显示结构页面
